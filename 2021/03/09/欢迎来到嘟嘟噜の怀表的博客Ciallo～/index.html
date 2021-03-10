@@ -200,6 +200,15 @@
 </article>
 
 
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = '欢迎来到嘟嘟噜の怀表的博客Ciallo～'
+    }
+</script>
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -461,6 +470,30 @@
 <script src="/js/blog.js"></script>
 
 
+
+
+<script src="https://myau.moe/js/comment/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.id = 'Tue Mar 09 2021 11:07:36 GMT+0800'
+      window.commentConfig.owner = 'beepwatch# 必填项, 你的GitHub ID'
+      window.commentConfig.repo = 'beepwatch.github.io# 必填项  你的存储评论的repo'
+      window.commentConfig.client_id = '17b147bb597b57f9ddaf# 必填项'
+      window.commentConfig.client_secret = '10da8102808e22e35a71094c7ba03de0b12bed56# 必填项'
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+      	id: 'Tue Mar 09 2021 11:07:36 GMT+0800',
+        owner: 'beepwatch# 必填项, 你的GitHub ID',
+        repo: 'beepwatch.github.io# 必填项  你的存储评论的repo',
+        client_id: '17b147bb597b57f9ddaf# 必填项',
+        client_secret: '10da8102808e22e35a71094c7ba03de0b12bed56# 必填项',
+        redirect_uri: ''
+      }
+    }
+</script>
+
+<script src="/js/comment/gitment.js"></script>
 
 
 </html>
