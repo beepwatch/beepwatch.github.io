@@ -13,7 +13,7 @@
     
     
     
-    <title>欢迎来到嘟嘟噜の怀表的博客Ciallo～ | 怀表の后花园</title>
+    <title>C中进制数的表达 | 怀表の后花园</title>
     <link href="https://beepwatch.gitee.io" rel="prefetch" />
 
     
@@ -234,26 +234,19 @@
         <i class="fa fa-home"></i>
         <a href="https://beepwatch.gitee.io">怀表の后花园</a>
         >
-        <span>欢迎来到嘟嘟噜の怀表的博客Ciallo～</span>
+        <span>C中进制数的表达</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2021/03/09/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E5%98%9F%E5%98%9F%E5%99%9C%E3%81%AE%E6%80%80%E8%A1%A8%E7%9A%84%E5%8D%9A%E5%AE%A2Ciallo%EF%BD%9E/">欢迎来到嘟嘟噜の怀表的博客Ciallo～</a>
+                <a href="/2021/03/21/C%E4%B8%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E7%9A%84%E8%A1%A8%E8%BE%BE/">C中进制数的表达</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/">第一次</a>
-                
-            </span>
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2021-03-09
+                <i class="fa fa-calendar"></i> 2021-03-21
             </span>
             
         </div>
@@ -263,47 +256,27 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2021/03/09/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E5%98%9F%E5%98%9F%E5%99%9C%E3%81%AE%E6%80%80%E8%A1%A8%E7%9A%84%E5%8D%9A%E5%AE%A2Ciallo%EF%BD%9E/">欢迎来到嘟嘟噜の怀表的博客Ciallo～</a>
+                    <a href="/2021/03/21/C%E4%B8%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E7%9A%84%E8%A1%A8%E8%BE%BE/">C中进制数的表达</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2021-03-09
+                <i class="fa fa-calendar"></i> 2021-03-21
             </p>
             <p>
-                
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/">第一次</a>
-                
                 
                 
             </p>
         </center>
     </div>
     <div class="content-article">
-        <p>在2021.03.09这一天在众人帮助之下终于建成了这个博客<br>这实在是很具有纪念意义<br>QAQ</p>
-<p>这里也会记录一些搭建博客过程中的问题</p>
-<span id="more"></span>
-
-<p>文章预览代码：</p>
+        <p>以0开头为八进制<br>如0101表示十进制数65<br>以0X或0x开头为十六进制<br>如0x101表示十进制数257</p>
+<p>简单的验证：</p>
 <blockquote>
-<p>&lt;!– more –&gt;</p>
+<p>#include&lt;stdio.h&gt;<br>int main(){<br>   printf(“%d”,0101);<br>   return 0;<br>}<br>输出结果是65</p>
 </blockquote>
-<p>Hexo多tags语法：<br>第一种： </p>
-<blockquote>
-<p>tags:[a,b,c]</p>
-</blockquote>
-<p>第二种：（注意空格）</p>
-<blockquote>
-<p>tags:<br>- abc<br>- def<br>- xxx</p>
-</blockquote>
-<p>自定义文章封面可以在front-matter中添加preview: 文件夹默认从source开始寻找 例如preview: imgs\preview\</p>
-<p>修改文章的默认front-matter可以修改根目录中的scaffolds/post.md文件</p>
-<p>添加图片的格式参考：</p>
-<blockquote>
-<p>![这里可以写关于图片的描述](/images/philly-magic-gardens.jpg “Philadelphia’s Magic Gardens”)</p>
-</blockquote>
-<p>关于front-matter更多内容参考：<br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020067490">https://segmentfault.com/a/1190000020067490</a><br><a target="_blank" rel="noopener" href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/">http://ijiaober.github.io/2014/08/05/hexo/hexo-04/</a></p>
+<h3 id="在printf中"><a href="#在printf中" class="headerlink" title="在printf中"></a>在printf中</h3><p>%d表示以十进制格式输出<br>%o表示以八进制格式输出<br>注意%D和%O编译器不一定认识，尽量不要使用<br>%x表示以十六进制格式输出（以小写字母）<br>%X表示以十六进制格式输出（以大写字母）</p>
+<h3 id="在scanf中"><a href="#在scanf中" class="headerlink" title="在scanf中"></a>在scanf中</h3><p>%d表示以十进制格式输入<br>%o表示以八进制格式输入<br>%x或者%X表示以十六进制格式输入（输入可以不分大小写）</p>
+<p>字符常量可用一个数表示，它可以是十进制，八进制，十六进制<br>如字符A有以下表示：<br>65<br>0101<br>0x41<br>‘A’<br>‘\101’ // ‘\ddd’为1<del>3位八进制数所表示的字符，’\71’就表示字符’9’<br>‘\x41’ // ‘\xdd’为1</del>2位十六进制数所表示的字符</p>
 
     </div>
 </article>
@@ -475,17 +448,17 @@
 
                 
                 <li>
-                    <a href="/2021/03/09/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E5%98%9F%E5%98%9F%E5%99%9C%E3%81%AE%E6%80%80%E8%A1%A8%E7%9A%84%E5%8D%9A%E5%AE%A2Ciallo%EF%BD%9E/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2021/03/21/C%E4%B8%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E7%9A%84%E8%A1%A8%E8%BE%BE/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2021/03/09/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E5%98%9F%E5%98%9F%E5%99%9C%E3%81%AE%E6%80%80%E8%A1%A8%E7%9A%84%E5%8D%9A%E5%AE%A2Ciallo%EF%BD%9E/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2021/03/21/C%E4%B8%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E7%9A%84%E8%A1%A8%E8%BE%BE/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2021/03/09/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E5%98%9F%E5%98%9F%E5%99%9C%E3%81%AE%E6%80%80%E8%A1%A8%E7%9A%84%E5%8D%9A%E5%AE%A2Ciallo%EF%BD%9E/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2021/03/21/C%E4%B8%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E7%9A%84%E8%A1%A8%E8%BE%BE/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -493,15 +466,15 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 9.22197832406695px;" class="tag-cloud-link">实用</a>
+    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 15.319500612907099px;" class="tag-cloud-link">实用</a>
     
-    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 11.155940717302427px;" class="tag-cloud-link">东方Project</a>
+    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 11.521225366550205px;" class="tag-cloud-link">东方Project</a>
     
-    <a href="/tags/MAD/" style="font-size: 11.305327116075421px;" class="tag-cloud-link">MAD</a>
+    <a href="/tags/MAD/" style="font-size: 13.766638764586954px;" class="tag-cloud-link">MAD</a>
     
-    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 19.521150500107506px;" class="tag-cloud-link">第一次</a>
+    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 18.58889458697732px;" class="tag-cloud-link">第一次</a>
     
-    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 9.44257594767786px;" class="tag-cloud-link">思考</a>
+    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 12.237208965331336px;" class="tag-cloud-link">思考</a>
     
 </div>
                 
