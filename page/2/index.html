@@ -13,7 +13,7 @@
     
     
     
-    <title>float的精度问题 | 怀表の后花园</title>
+    <title>怀表の后花园</title>
     <link href="https://beepwatch.gitee.io" rel="prefetch" />
 
     
@@ -85,7 +85,7 @@
             <a href="/message" class="menuItem" style="left: 19.6891%; top: 67.5%;">留言板</a>
 
             
-            <a class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
+            <a href="/" class="menuItem" style="left: 19.6891%; top: 32.5%;">上一页</a>
             
         </div>
         <audio id="audio" src="/imgs/oni.mp3"></audio>
@@ -229,67 +229,53 @@
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
                     
-<article class="article well article-body" id="article">
-    <div class="breadcrumb">
-        <i class="fa fa-home"></i>
-        <a href="https://beepwatch.gitee.io">怀表の后花园</a>
-        >
-        <span>float的精度问题</span>
-    </div>
-    <!-- 大型设备详细文章 -->
-    <div class="hidden-xs">
-        <div class="title-article">
-            <h1>
-                <a href="/2021/03/15/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">float的精度问题</a>
-            </h1>
-        </div>
-        <div class="tag-article">
-            
-            <span class="label label-gal">
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/%E6%80%9D%E8%80%83/">思考</a>
-                
-            </span>
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2021-03-15
-            </span>
-            
-        </div>
-    </div>
-    <!-- 小型设备详细文章 -->
-    <div class="visible-xs">
-        <center>
-            <div class="title-article">
-                <h4>
-                    <a href="/2021/03/15/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">float的精度问题</a>
-                </h4>
-            </div>
-            <p>
-                <i class="fa fa-calendar"></i> 2021-03-15
-            </p>
-            <p>
-                
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/%E6%80%9D%E8%80%83/">思考</a>
-                
-                
-                
-            </p>
-        </center>
-    </div>
-    <div class="content-article">
-        <p>float并不是连续的，它的精度在十进制中只有小数点后6位，有7位有效数字<br>printf中的%.2f格式控制符实际上是对小数点后两位进行四舍五入<br>运行下面的代码输出结果将是1.36</p>
-<blockquote>
-<p> printf(“%.2f”,1.355);</p>
-</blockquote>
-<p>关于long double不同编译器分配字节数可能不同，8、10、12、16都是存在的</p>
+<div class="alert well fade in" id="gal-issue" role="alert">
+    <!-- TODO 添加关闭公告框功能 -->
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <!-- 这里自行配置公告内容 -->
+    这里是<strong>嘟嘟噜の怀表</strong>的博客哟~
+    <br>
+    不忘初心，方得始终。
+    <!-- 自行配置公告内容结束 -->
+</div>
 
-    </div>
-</article>
+<div id="article-list">
+     
+     
+</div>
+<!-- 前方最多7个 < 1 2 3 4 5 6 -->
+<!-- 前方超过第7页则分为 < 1 ... (n - 3) (n - 2) (n - 1) n, 此时前面为固定的6个 -->
 
+<!-- 后方最多8个 (n + 1) 到 (n + 7) > -->
+<!-- 如果末页和当前页相差超过7, 此时后面为固定的6个, (n + 1) (n + 2) (n + 3) ... total > -->
+
+
+
+<div id="gal-pagination" class="clearfix">
+    <ul class="pagination pagination-gal pull-right">
+        
+        <li class="prev">
+            <a href="/">«</a>
+        </li>
+        
+        
+        
+        <li>
+            <a href="/">1</a>
+        </li>
+        
+        
+        <li class="current">
+            <span>2</span>
+        </li>
+        
+        
+        
+        
+    </ul>
+</div>
+
+<!-- 加上这段代码原因： gitment在首页加载时, 如果找不到对应的控件会报错，此处加上，同时设置为none，防止报错 -->   
 
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
@@ -424,6 +410,12 @@
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="/2021/03/10/%E4%B8%80%E4%BA%9B%E8%BD%A6%E4%B8%87%E6%9B%B2/">一些车万曲</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="/2021/03/10/%E6%96%B0%E4%BA%BA%E7%9A%84MAD/">新人的MAD</a>
                 </span>
             </li>
@@ -431,12 +423,6 @@
             <li class="list-group-item">
                 <span class="post-title">
                     <a href="/2021/03/09/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E5%98%9F%E5%98%9F%E5%99%9C%E3%81%AE%E6%80%80%E8%A1%A8%E7%9A%84%E5%8D%9A%E5%AE%A2Ciallo%EF%BD%9E/">欢迎来到嘟嘟噜の怀表的博客Ciallo～</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2021/03/14/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%94%E6%A0%A1/">第一次返校</a>
                 </span>
             </li>
             
@@ -481,17 +467,17 @@
 
                 
                 <li>
-                    <a href="/2021/03/15/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/page/2/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2021/03/15/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/page/2/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/2021/03/15/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/page/2/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -499,15 +485,15 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 11.866667003589214px;" class="tag-cloud-link">实用</a>
+    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 8.02053392475013px;" class="tag-cloud-link">实用</a>
     
-    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 8.060229703306929px;" class="tag-cloud-link">东方Project</a>
+    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 17.20115345217919px;" class="tag-cloud-link">东方Project</a>
     
-    <a href="/tags/MAD/" style="font-size: 10.055624207123977px;" class="tag-cloud-link">MAD</a>
+    <a href="/tags/MAD/" style="font-size: 16.115993133490285px;" class="tag-cloud-link">MAD</a>
     
-    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 14.118681467839236px;" class="tag-cloud-link">第一次</a>
+    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 8.872076250355091px;" class="tag-cloud-link">第一次</a>
     
-    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 14.721903830573915px;" class="tag-cloud-link">思考</a>
+    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 11.675169851626192px;" class="tag-cloud-link">思考</a>
     
 </div>
                 

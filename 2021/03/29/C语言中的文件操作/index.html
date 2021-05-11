@@ -282,10 +282,26 @@
     </div>
     <div class="content-article">
         <p>先列出几个函数</p>
-<h4 id="文件的打开与关闭"><a href="#文件的打开与关闭" class="headerlink" title="文件的打开与关闭"></a>文件的打开与关闭</h4><p>fp=fopen(filename,mode);<br>fclose(fp);</p>
-<h4 id="单个字符的读写"><a href="#单个字符的读写" class="headerlink" title="单个字符的读写"></a>单个字符的读写</h4><p>int fgetc(FILE *fp);<br>int fputc(int ch,FILE *fp);</p>
-<h4 id="字符串读写"><a href="#字符串读写" class="headerlink" title="字符串读写"></a>字符串读写</h4><p>char *fgets(char *str,int num,FILE *fp);<br>int fputs(char *str,FILE *fp);</p>
-<h4 id="格式化读写"><a href="#格式化读写" class="headerlink" title="格式化读写"></a>格式化读写</h4><p>int fscanf(FILE *fp,char *format,arg_list);<br>int fprintf(FILE *fp,char *format,arg_list);</p>
+<h4 id="文件的打开与关闭"><a href="#文件的打开与关闭" class="headerlink" title="文件的打开与关闭"></a>文件的打开与关闭</h4><p>fp=fopen(filename,mode);<br>filename是一个字符串，这个字符串可以包括文件路径<br>可以采用如下形式</p>
+<blockquote>
+<p>char ch[60]=”c:\users\me\Desktop\newfolder\text.txt”<br>FILE *fp=fopen(ch,”a+”);<br>注意文件路径不区分大小写，需要使用两个反斜杠，因为反斜杠在c语言中是转义字符<br>PS：直接在C盘根目录写入可能会失败，原因是没有权限</p>
+</blockquote>
+<p>打开一个文件<br>成功返回文件指针 失败返回NULL</p>
+<p>fclose(fp);<br>关闭一个文件<br>成功返回0 失败返回EOF(-1)</p>
+<h4 id="单个字符的读写"><a href="#单个字符的读写" class="headerlink" title="单个字符的读写"></a>单个字符的读写</h4><p>int fgetc(FILE *fp);</p>
+<p>从读写指针开始读一个字符<br>成功返回字符ASCII码 失败或文件结束返回EOF(-1)</p>
+<p>int fputc(int ch,FILE *fp);</p>
+<p>从读写指针开始写入一个字符<br>成功返回字符ASCII码 失败返回EOF(-1)</p>
+<h4 id="字符串读写"><a href="#字符串读写" class="headerlink" title="字符串读写"></a>字符串读写</h4><p>char *fgets(char *str,int num,FILE *fp);</p>
+<p>num通常是str字符数组的长度，最多读入num-1个字符，否则强制结束<br>字符串的自然结束符是“换行符”和“文件结束符(EOF)”<br>会读入回车，把回车符放在str的末尾再加\0<br>文件读写指针也会跳过回车<br>成功返回str数组首地址 失败返回NULL</p>
+<p>int fputs(char *str,FILE *fp);</p>
+<p>从读写指针开始写入一个字符串（单纯的写入字符串，没有其他操作）<br>文件读写指针向前移动strlen(str)个字节<br>成功返回非负值(&gt;=0,由编译器决定) 失败返回EOF(-1)</p>
+<h4 id="以上函数都是以ASCII码形式写入，会占用较多的存储空间，耗时也长"><a href="#以上函数都是以ASCII码形式写入，会占用较多的存储空间，耗时也长" class="headerlink" title="以上函数都是以ASCII码形式写入，会占用较多的存储空间，耗时也长"></a>以上函数都是以ASCII码形式写入，会占用较多的存储空间，耗时也长</h4><p>无论是否以带b的形式fopen一个文件，文件操作函数都可以用（待验证）</p>
+<h4 id="格式化读写"><a href="#格式化读写" class="headerlink" title="格式化读写"></a>格式化读写</h4><p>int fscanf(FILE *fp,char *format,arg_list);</p>
+<blockquote>
+<p>fscanf(fp,”%s”,str);//fscanf不会读入回车与空格，将一个单纯的字符串读入 </p>
+</blockquote>
+<p>int fprintf(FILE *fp,char *format,arg_list);</p>
 <p>———-更新———-</p>
 <h4 id="fscanf使用时的注意"><a href="#fscanf使用时的注意" class="headerlink" title="fscanf使用时的注意"></a>fscanf使用时的注意</h4><p>fscanf的格式控制要注意不能出现如%.2f之类的格式控制符，但是%f是可以的<br>如一个文件example.txt中只有12.34这个数字，想把它读入变量float a中<br>使用fscanf(fp,”%f”,&amp;a);即可，用%.2f则会读入失败，返回值为0</p>
 <p>与此不同的是，fprintf可以自由控制格式，随意向文件中写入</p>
@@ -343,6 +359,12 @@
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="/2021/05/11/%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E4%B8%8E%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/">相对路径与绝对路径</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="/2021/04/05/%E8%8B%A5%E5%B9%B2%E5%86%B7%E7%9F%A5%E8%AF%86/">若干冷知识</a>
                 </span>
             </li>
@@ -392,12 +414,6 @@
             <li class="list-group-item">
                 <span class="post-title">
                     <a href="/2021/03/09/hello-world/">Hello World</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2021/03/09/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E5%98%9F%E5%98%9F%E5%99%9C%E3%81%AE%E6%80%80%E8%A1%A8%E7%9A%84%E5%8D%9A%E5%AE%A2Ciallo%EF%BD%9E/">欢迎来到嘟嘟噜の怀表的博客Ciallo～</a>
                 </span>
             </li>
             
@@ -467,13 +483,13 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/03/29/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">C语言中的文件操作</a>
+                    <a href="/2021/04/05/%E8%8B%A5%E5%B9%B2%E5%86%B7%E7%9F%A5%E8%AF%86/">若干冷知识</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/04/05/%E8%8B%A5%E5%B9%B2%E5%86%B7%E7%9F%A5%E8%AF%86/">若干冷知识</a>
+                    <a href="/2021/05/11/%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E4%B8%8E%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/">相对路径与绝对路径</a>
                 </span>
             </li>
             
@@ -506,15 +522,15 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 16.787178570904345px;" class="tag-cloud-link">实用</a>
+    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 18.97270155963937px;" class="tag-cloud-link">实用</a>
     
-    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 9.039688188439428px;" class="tag-cloud-link">东方Project</a>
+    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 14.864200890146034px;" class="tag-cloud-link">东方Project</a>
     
-    <a href="/tags/MAD/" style="font-size: 16.32471863608003px;" class="tag-cloud-link">MAD</a>
+    <a href="/tags/MAD/" style="font-size: 15.095833207131562px;" class="tag-cloud-link">MAD</a>
     
-    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 15.379840226005182px;" class="tag-cloud-link">第一次</a>
+    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 18.20651463808099px;" class="tag-cloud-link">第一次</a>
     
-    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 19.188300265074837px;" class="tag-cloud-link">思考</a>
+    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 9.54395880277325px;" class="tag-cloud-link">思考</a>
     
 </div>
                 
