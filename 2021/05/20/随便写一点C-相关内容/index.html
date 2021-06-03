@@ -163,10 +163,10 @@
                             <a href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
                         </li>
                         
-                        
                         <li>
-                            <a href="/categories">...</a>
+                            <a href="/categories/%E7%9F%A5%E8%AF%86/">知识</a>
                         </li>
+                        
                         
                         
                     </ul>
@@ -201,10 +201,10 @@
                             <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/">第一次</a>
                         </li>
                         
-                        
                         <li>
-                            <a href="/tags">...</a>
+                            <a href="/tags/%E6%80%9D%E8%80%83/">思考</a>
                         </li>
+                        
                         
                         
                     </ul>
@@ -283,11 +283,29 @@
     <div class="content-article">
         <p>C++之路道阻且长TAT</p>
 <span id="more"></span>
+
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><h4 id="C-项目的组成："><a href="#C-项目的组成：" class="headerlink" title="C++项目的组成："></a>C++项目的组成：</h4><p>cpp文件，h/hpp文件，外部库文件（dll,lib,exe等），资源文件（rc,res)，数据文件（数据库、XML、dat等），其他<br>利用make工具等编译生成可执行文件（exe,dll等）<br>Windows的静态库文件扩展名是 .lib，动态库文件扩展名是 .dll (Dynamic-Link Libraries)<br>相应的，有静态编译和动态编译</p>
 <h4 id="C-项目编译过程"><a href="#C-项目编译过程" class="headerlink" title="C++项目编译过程"></a>C++项目编译过程</h4><p>概述：<br>mycpp.prj{file01.cpp,file02.cpp,…,xx.rc}–预编译过程–&gt;{file01.cpp’,file02.cpp’,…}–编译过程(compile)–&gt;{file01.obj,file02.obj,…,xx.res}–链接过程(link)–&gt;mycpp.exe</p>
-<p>.prj：工程文件，统领若干cpp文件和其他一些文件<br>.rc：一些资源文件<br>.cpp’：工<br>.obj：目标文件<br>cpp文件是独立编译的，是最小编译单元，一个cpp文件和其他cpp文件没有关系，只在最后的链接过程产生联系</p>
+<p>.prj：工程文件，统领若干cpp文件和其他一些文件<br>.rc：一些资源文件<br>.cpp’：预编译后得到的副本文件<br>.obj：目标文件<br>cpp文件是独立编译的，是最小编译单元，一个cpp文件和其他cpp文件没有关系，只在最后的链接过程产生联系</p>
 <p>1.预编译过程：预处理源代码中的带有#号的语句，生成编译程序可处理的文本文件，对某个cpp文件将头文件进行展开插入，并且放在内存中，提高编译速度<br>2.编译过程：对每个预处理后源程序，编译并生成相应的的二进制目标文件（object文件）<br>此过程中，要求编译器能够识别每个标识符，知道其各自的类型、含义，但不要求知道存放位置<br>3.链接过程：用到一些库(.lib,.dll)，对在整个程序范围内，确定各标识符所代表的地址，如变量、函数入口，生成可执行文件<br>此过程中，要求编译器能够确定每个标识符所对应的含义或地址<br>这里的地址指变量或函数在文件中的具体位置</p>
 <p>这三步统称编译过程，这里的错误称为语法错误，<strong>这里必须会自己掌握</strong><br>相应的，成功生成可执行文件后的错误是逻辑错误</p>
+<h4 id="make工具说明"><a href="#make工具说明" class="headerlink" title="make工具说明"></a>make工具说明</h4><p>通过比对源文件和要生成的文件的时间戳，选择并决定编译哪些文件，提高编译速度</p>
+<h4 id="入口函数（main函数）"><a href="#入口函数（main函数）" class="headerlink" title="入口函数（main函数）"></a>入口函数（main函数）</h4><p>返回值：int或void，缺省为int（C++17(C++1z)要求int）</p>
+<p>命令行参数：<br>int argc,char *argv[ ]</p>
+<h4 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h4><p>扩展名：.h,.hpp,无扩展名<br>.h是C中的，.hpp是C++中的（,h是最常用的），无扩展名通常是系统的头文件</p>
+<p>标准库：系统预定义的文件，其可执行代码通常存在于操作系统，或者随编译器一同发布，属于标准C++的一部分<br>&lt; &gt;：在系统目录中查找相应的头文件（system目录或者编译器提供的目录）<br>“ “：先在本地（当前工程）的目录中查找相应的头文件；若找不到，再到系统目录中查找相应的头文件<br><strong>括号或引号里可以写成绝对路径或相对路径的形式</strong></p>
+<p>#include<xx>和#include&lt;xx.h&gt;<br>前者是C++的风格<br>大体上：#include<xx>相当于<strong>（是相当于，不是等价）</strong></p>
+<blockquote>
+<p>namespace std{<br>   #include”xx.h”<br>}</p>
+</blockquote>
+<p>书写风格：一般是把尖括号（&lt; &gt;）放在前面（<strong>注意#include “stdafx.h”这个东西的存在</strong>），自己写的.h文件（” “）放在后面<br>不然可能会造成报错信息产生在尖括号的include那一行，让你百思不得其解</p>
+<p>前置声明：告诉编译器，一个标识符所代表的类型，含义等，但不必告知其具体位置</p>
+<p>在C++中可以使用类的前置声明<br>类似函数声明<br>如定义了类class A</p>
+<blockquote>
+<p>class A{<br>…<br>};<br>想要在定义之前使用class A,就需要前置声明<br>class A;   //对于结构体struct也可以使用class xxx来前置声明，结构体本身就是默认类型为public的类，但是不能使用struct xxx，struct并没有自己的前置声明</p>
+</blockquote>
+<p><strong>注意：</strong><br>前置声明只能作为指针或引用，不能定义类的对象，自然也就不能调用对象中的方法。<br>详见：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/fwycmengsoft/p/4061989.html">https://www.cnblogs.com/fwycmengsoft/p/4061989.html</a></p>
+<p>####条件编译</p>
 <h4 id="全新的运算符"><a href="#全新的运算符" class="headerlink" title="全新的运算符"></a>全新的运算符</h4><p>先介绍 <strong>new</strong> 和 <strong>delete</strong> 两个运算符，他们取代了malloc和free函数<br>用法：</p>
 <blockquote>
 <p>float *pai=new float(3.14); //开辟一个单精度数的空间，地址赋给指针变量pai，同时给该空间赋值3.14，失败返回NULL<br>int *p=new int[10]; //开辟一个int数组，new数组时不能赋初值<br>class people *iptr=new people; //new一个类空间<br>iptr-&gt;height=123;</p>
@@ -357,6 +375,12 @@
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="/2021/06/02/C-%E7%9A%84%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E/">C++的前置声明</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="/2021/05/20/%E9%9A%8F%E4%BE%BF%E5%86%99%E4%B8%80%E7%82%B9C-%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9/">随便写一点C++相关内容</a>
                 </span>
             </li>
@@ -409,12 +433,6 @@
                 </span>
             </li>
             
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2021/03/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84%E7%BD%91%E7%AB%99/">一些实用的网站</a>
-                </span>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -433,13 +451,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/03/09/hello-world/">Hello World</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
-                    <a href="/2021/03/10/%E4%B8%80%E4%BA%9B%E8%BD%A6%E4%B8%87%E6%9B%B2/">一些车万曲</a>
+                    <a href="/2021/03/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84%E7%BD%91%E7%AB%99/">一些实用的网站</a>
                 </span>
             </li>
             
@@ -487,6 +499,12 @@
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="/2021/05/11/%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E4%B8%8E%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/">相对路径与绝对路径</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="/2021/05/20/%E9%9A%8F%E4%BE%BF%E5%86%99%E4%B8%80%E7%82%B9C-%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9/">随便写一点C++相关内容</a>
                 </span>
             </li>
@@ -520,15 +538,15 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 17.036792766168794px;" class="tag-cloud-link">实用</a>
+    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 15.72031891593441px;" class="tag-cloud-link">实用</a>
     
-    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 15.588604891426417px;" class="tag-cloud-link">东方Project</a>
+    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 13.64539114618169px;" class="tag-cloud-link">东方Project</a>
     
-    <a href="/tags/MAD/" style="font-size: 19.44266784125185px;" class="tag-cloud-link">MAD</a>
+    <a href="/tags/MAD/" style="font-size: 9.770398101377392px;" class="tag-cloud-link">MAD</a>
     
-    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 17.398030684377513px;" class="tag-cloud-link">第一次</a>
+    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 13.927830896531322px;" class="tag-cloud-link">第一次</a>
     
-    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 14.997502318488493px;" class="tag-cloud-link">思考</a>
+    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 14.770105547428773px;" class="tag-cloud-link">思考</a>
     
 </div>
                 

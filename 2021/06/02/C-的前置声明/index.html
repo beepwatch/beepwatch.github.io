@@ -13,7 +13,7 @@
     
     
     
-    <title>404 | 怀表の后花园</title>
+    <title>C++的前置声明 | 怀表の后花园</title>
     <link href="https://beepwatch.gitee.io" rel="prefetch" />
 
     
@@ -228,10 +228,120 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <!-- 搜索页面(尽可能接近ZanBlog搜索功能) -->
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="https://beepwatch.gitee.io">怀表の后花园</a>
+        >
+        <span>C++的前置声明</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/2021/06/02/C-%E7%9A%84%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E/">C++的前置声明</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2021-06-02
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/2021/06/02/C-%E7%9A%84%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E/">C++的前置声明</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2021-06-02
+            </p>
+            <p>
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <h4 id="【1】一般的前置函数声明"><a href="#【1】一般的前置函数声明" class="headerlink" title="【1】一般的前置函数声明"></a>【1】一般的前置函数声明</h4><p>见过最多的前置函数声明，基本格式代码如下：</p>
+<blockquote>
+<p>#include <iostream><br>using namespace std;</p>
+<p>void fun(char ch, int *pValue, double dValue);</p>
+<p>void main()<br>{<br>  int nValue = 100;<br>  double dValue = 111.22;<br> fun(‘a’, &amp;nValue, dValue);</p>
+<p> system(“pause”);<br>}</p>
+<p>void fun(char ch, int *pValue, double dValue)<br>{<br>  return;<br>}</p>
+</blockquote>
+<p>很好理解，不做赘述。</p>
+<h4 id="【2】自定义类型的前置声明"><a href="#【2】自定义类型的前置声明" class="headerlink" title="【2】自定义类型的前置声明"></a>【2】自定义类型的前置声明</h4><p>自定义类型的前置声明，由于编译器不知道类型的大小，所以不可以声明类型的对象。只可以利用类型声明指针和引用。</p>
+<p>代码如下：</p>
+<blockquote>
+<p>/*</p>
+<ul>
+<li>自定义类型前置声明</li>
+<li>/<br>#include <iostream><br>using namespace std;</li>
+</ul>
+<p>class B;</p>
+<p>class A<br>{<br>private:<br>  // 内置类型<br>  int m_nInt;<br>  int&amp; m_nRInt;<br> int* m_pInt;</p>
+<p> // 自定义类型<br>//  B b; // error！<br>  B* m_pB;<br> B&amp; m_b;</p>
+<p>public:<br>  A (B *pBPara = NULL) : m_nInt(100)<br>    , m_nRInt(m_nInt)<br>    , m_pInt(NULL)<br>    , m_pB(NULL)<br>    , m_b((NULL == pBPara) ? (*m_pB) : (*pBPara))<br>  {<br>    cout &lt;&lt; “A()” &lt;&lt; endl;<br>  }<br>  <del>A()<br>  {<br>    cout &lt;&lt; “</del>A()” &lt;&lt; endl;<br> }</p>
+<p> void funA()<br>  {<br>//    m_pB-&gt;doAnything(); // build error C2027: use of undefined type ‘B’<br>  }<br>};</p>
+<p>class B<br>{<br>private:<br> int m_n;</p>
+<p>public:<br>  B (int n = 100) : m_n(n)<br>  {<br>    cout &lt;&lt; “B()” &lt;&lt; endl;<br>  }<br>  /<del>B()<br>  {<br>    cout &lt;&lt; “</del>B()” &lt;&lt; endl;<br>  }<br>  void doAnything()<br>  {<br>    cout &lt;&lt; “B::anythig()” &lt;&lt; endl;<br>  }<br>};</p>
+<p>void main()<br>{<br> A objA;<br>  system(“pause”);<br>}</p>
+</blockquote>
+<p>如上，利用前置类型的指针想调用其成员函数，会报编译错误！那么，肿么办？请看下文。</p>
+<h4 id="【3】声明和实现分离"><a href="#【3】声明和实现分离" class="headerlink" title="【3】声明和实现分离"></a>【3】声明和实现分离</h4><p>代码如下，声明头文件：</p>
+<blockquote>
+<p>/*</p>
+<ul>
+<li>TestForwardDeclar.h</li>
+<li>/<br>#ifndef D_TESTFORWARDDECLAR_H_<br>#define D_TESTFORWARDDECLAR_H_</li>
+</ul>
+<p>#include <iostream></p>
+<p>class B; // 前置声明自定义类型</p>
+<p>class A<br>{<br>private:<br>  // 内置类型<br>  int m_nInt;<br>  int&amp; m_nRInt;<br>  int* m_pInt;</p>
+</blockquote>
+<p>  // 自定义类型<br>//  B b; // error！<br>  B* m_pB;</p>
+<blockquote>
+<p> B&amp; m_b;</p>
+<p>public:<br>  A (B *pBPara = NULL);<br>  ~A ();<br>  void funA();<br>};</p>
+<p>class B<br>{<br>private:<br> int m_n;</p>
+<p>public:<br>  B (int n = 100);<br>  ~B ();<br>  void doAnything();<br>};</p>
+<p>#endif</p>
+</blockquote>
+<p>代码如下，定义文件：</p>
+<blockquote>
+<p>/*</p>
+<ul>
+<li>TestForwardDeclar.cpp</li>
+<li>/</li>
+</ul>
+<p>#include “TestForwardDeclar.h”<br>#include <iostream></p>
+<p>A::A (B *pBPara)<br>  : m_nInt(100)<br>  , m_nRInt(m_nInt)<br>  , m_pInt(NULL)<br>  , m_pB(NULL)<br>  , m_b((NULL == pBPara) ? (*m_pB) : (*pBPara))<br>{<br>  std::cout &lt;&lt; “A()” &lt;&lt; std::endl;<br>}</p>
+<p>A::<del>A()<br>{<br>  std::cout &lt;&lt; “</del>A()” &lt;&lt; std::endl;<br>}</p>
+<p>void A::funA()<br>{<br>  m_pB-&gt;doAnything(); // 分开头文件和实现文件即可<br>}</p>
+<p>B::B (int n) : m_n(n)<br>{<br>  std::cout &lt;&lt; “B()” &lt;&lt; std::endl;<br>}</p>
+<p>B::<del>B()<br>{<br>  std::cout &lt;&lt; “</del>B()” &lt;&lt; std::endl;<br>}</p>
+<p>void B::doAnything()<br>{<br>  std::cout &lt;&lt; “B::anythig()” &lt;&lt; std::endl;<br>}</p>
+</blockquote>
+<p>代码如下：测试文件：</p>
+<blockquote>
+<p>#include “TestForwardDeclar.h”</p>
+<p>void main()<br> {<br>  A objA;<br>}</p>
+</blockquote>
+<h4 id="【4】总结"><a href="#【4】总结" class="headerlink" title="【4】总结"></a>【4】总结</h4><p>自定义类型前置声明时，只可以利用类型名声明指针和引用变量（谨记不可以声明对象或new 对象，均因为类型大小不确定，编译器无能为力）。</p>
+<p>若需要利用指针或引用调用前置类型的接口，必须按照声明和实现分离的方式进行编码。</p>
+<p>转载自：<a target="_blank" rel="noopener" href="https://www.jb51.net/article/115357.htm">https://www.jb51.net/article/115357.htm</a></p>
 
-<!-- 404 自定义页面 -->
-<!-- 有其他想自定义的page在这里添加判断条件, 并且写好对应的模板渲染文件 -->
+    </div>
+</article>
+
 
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
@@ -354,13 +464,13 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/03/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84%E7%BD%91%E7%AB%99/">一些实用的网站</a>
+                    <a href="/2021/03/09/hello-world/">Hello World</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/03/10/%E6%96%B0%E4%BA%BA%E7%9A%84MAD/">新人的MAD</a>
+                    <a href="/2021/03/10/%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E7%9A%84%E7%BD%91%E7%AB%99/">一些实用的网站</a>
                 </span>
             </li>
             
@@ -378,12 +488,6 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/03/15/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">float的精度问题</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
                     <a href="/2021/03/21/C%E4%B8%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E7%9A%84%E8%A1%A8%E8%BE%BE/">C中进制数的表达</a>
                 </span>
             </li>
@@ -391,6 +495,12 @@
             <li class="list-group-item">
                 <span class="post-title">
                     <a href="/2021/03/29/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">C语言中的文件操作</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/2021/04/05/%E8%8B%A5%E5%B9%B2%E5%86%B7%E7%9F%A5%E8%AF%86/">若干冷知识</a>
                 </span>
             </li>
             
@@ -423,17 +533,17 @@
 
                 
                 <li>
-                    <a href="/404/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2021/06/02/C-%E7%9A%84%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/404/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2021/06/02/C-%E7%9A%84%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/404/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2021/06/02/C-%E7%9A%84%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -441,15 +551,15 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 19.085586256346986px;" class="tag-cloud-link">实用</a>
+    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 8.899296053583033px;" class="tag-cloud-link">实用</a>
     
-    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 11.770408935711222px;" class="tag-cloud-link">东方Project</a>
+    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 18.790548896746962px;" class="tag-cloud-link">东方Project</a>
     
-    <a href="/tags/MAD/" style="font-size: 14.256496750268006px;" class="tag-cloud-link">MAD</a>
+    <a href="/tags/MAD/" style="font-size: 8.196161664265155px;" class="tag-cloud-link">MAD</a>
     
-    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 12.881735905256026px;" class="tag-cloud-link">第一次</a>
+    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 10.909914769449834px;" class="tag-cloud-link">第一次</a>
     
-    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 15.759724070335253px;" class="tag-cloud-link">思考</a>
+    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 10.244382503544447px;" class="tag-cloud-link">思考</a>
     
 </div>
                 
