@@ -14,7 +14,7 @@
     
     
     <title>随便写一点C++相关内容 | 怀表の后花园</title>
-    <link href="https://beepwatch.gitee.io" rel="prefetch" />
+    <link href="https://beepwatch.github.io" rel="prefetch" />
 
     
 <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -50,7 +50,7 @@
       if (document.images) {
         var avatar = new Image();
         avatar.src = '/imgs/murasame.jpg'
-        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg,preview5.jpg,preview6.jpg,preview7.jpg,preview8.jpg,preview9.png,preview10.jpg,preview11.jpg,preview12.jpg,preview13.jpg,preview14.jpg,preview15.jpg,preview16.jpg,preview17.jpg,preview18.jpg,preview19.png'.split(',')
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg,preview5.jpg,preview6.jpg,preview7.jpg,preview8.jpg,preview9.png,preview10.jpg,preview11.jpg,preview12.jpg,preview13.jpg,preview14.jpg,preview15.jpg,preview16.jpg,preview17.jpg,preview18.jpg'.split(',')
         var previewsPreLoad = []
         for(var i = 0; i < length; i++) {
           previewsPreLoad.push(new Image())
@@ -76,7 +76,7 @@
     <div class="gal-menu gal-dropdown">
     <div class="circle" id="gal">
         <div class="ring">
-            <a href="https://beepwatch.gitee.io" class="menuItem" style="left: 50%; top: 15%;">首页</a>
+            <a href="https://beepwatch.github.io" class="menuItem" style="left: 50%; top: 15%;">首页</a>
             
             <a class="menuItem" style="left: 80.3109%; top: 32.5%;">下一页</a>
             
@@ -100,7 +100,7 @@
                     aria-expanded="false">
                 <span class="fa fa-lg fa-reorder"></span>
             </button>
-            <a href="https://beepwatch.gitee.io">
+            <a href="https://beepwatch.github.io">
                 
                 <style>
                     #gal-header .navbar-brand {
@@ -232,7 +232,7 @@
 <article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
-        <a href="https://beepwatch.gitee.io">怀表の后花园</a>
+        <a href="https://beepwatch.github.io">怀表の后花园</a>
         >
         <span>随便写一点C++相关内容</span>
     </div>
@@ -310,7 +310,40 @@
 <pre><code>class A;   //对于结构体struct也可以使用class xxx来前置声明，结构体本身就是默认类型为public的类，但是不能使用struct xxx，struct并没有自己的前置声明
 </code></pre>
 <p><strong>注意：</strong><br>前置声明只能作为指针或引用，不能定义类的对象，自然也就不能调用对象中的方法。<br>详见：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/fwycmengsoft/p/4061989.html">https://www.cnblogs.com/fwycmengsoft/p/4061989.html</a></p>
-<h4 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h4><h4 id="全新的运算符"><a href="#全新的运算符" class="headerlink" title="全新的运算符"></a>全新的运算符</h4><p>先介绍 <strong>new</strong> 和 <strong>delete</strong> 两个运算符，他们取代了malloc和free函数<br>用法：</p>
+<h4 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h4><p>1.if格式</p>
+<pre><code>#if 表达式
+     语句序列①
+[#else
+     语句序列②]
+#endif
+</code></pre>
+<p>功能：当表达式的值为真时，编译语句序列①，否则编译语句序列②。其中，#else和语句序列②可有可无。</p>
+<p>2.ifdef格式</p>
+<pre><code>#ifdef     标识符
+     语句序列①
+[#else
+     语句序列②]
+#endif
+</code></pre>
+<p>功能：当标识符已被定义时（用#define定义），编译语句序列①，否则编译语句序列②。其中#else和语句序列②可有可无。</p>
+<p>3.ifndef格式</p>
+<pre><code>#ifndef     标识符
+     语句序列①
+[#else
+     语句序列②]
+#endif
+</code></pre>
+<p>功能：该格式功能与ifdef相反。</p>
+<p>在头文件中常用条件编译语句实现包含警戒，常见格式如下：</p>
+<pre><code>//example.h
+#ifndef EXAMPLEH
+#def EXAMPLEH
+...
+(头文件具体代码)
+...
+#endif
+</code></pre>
+<h4 id="全新的运算符"><a href="#全新的运算符" class="headerlink" title="全新的运算符"></a>全新的运算符</h4><p>先介绍 <strong>new</strong> 和 <strong>delete</strong> 两个运算符，他们取代了malloc和free函数<br>用法：</p>
 <pre><code>float *pai=new float(3.14); //开辟一个单精度数的空间，地址赋给指针变量pai，同时给该空间赋值3.14，失败返回NULL
 int *p=new int[10]; //开辟一个int数组，new数组时不能赋初值
 class people *iptr=new people; //new一个类空间
@@ -343,6 +376,7 @@ return total;
 </code></pre>
 <p>也可以不带XXX（不推荐）</p>
 <h4 id="类的指针"><a href="#类的指针" class="headerlink" title="类的指针"></a>类的指针</h4><p>类似结构体，定义指针变量可以</p>
+<p>wchar_t（宽字符类型）主要用于存储东亚地区的字符</p>
 
     </div>
 </article>
@@ -469,13 +503,13 @@ return total;
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/03/10/%E4%B8%80%E4%BA%9B%E8%BD%A6%E4%B8%87%E6%9B%B2/">一些车万曲</a>
+                    <a href="/2021/03/09/hello-world/">Hello World</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/03/10/%E6%96%B0%E4%BA%BA%E7%9A%84MAD/">新人的MAD</a>
+                    <a href="/2021/03/10/%E4%B8%80%E4%BA%9B%E8%BD%A6%E4%B8%87%E6%9B%B2/">一些车万曲</a>
                 </span>
             </li>
             
@@ -487,13 +521,13 @@ return total;
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/03/15/float%E7%9A%84%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">float的精度问题</a>
+                    <a href="/2021/03/21/C%E4%B8%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E7%9A%84%E8%A1%A8%E8%BE%BE/">C中进制数的表达</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/03/21/C%E4%B8%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E7%9A%84%E8%A1%A8%E8%BE%BE/">C中进制数的表达</a>
+                    <a href="/2021/03/29/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">C语言中的文件操作</a>
                 </span>
             </li>
             
@@ -505,13 +539,13 @@ return total;
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/05/20/%E9%9A%8F%E4%BE%BF%E5%86%99%E4%B8%80%E7%82%B9C-%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9/">随便写一点C++相关内容</a>
+                    <a href="/2021/05/11/%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E4%B8%8E%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/">相对路径与绝对路径</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2021/06/02/C-%E7%9A%84%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E/">C++的前置声明</a>
+                    <a href="/2021/05/20/%E9%9A%8F%E4%BE%BF%E5%86%99%E4%B8%80%E7%82%B9C-%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9/">随便写一点C++相关内容</a>
                 </span>
             </li>
             
@@ -556,15 +590,15 @@ return total;
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 13.311882537070236px;" class="tag-cloud-link">实用</a>
+    <a href="/tags/%E5%AE%9E%E7%94%A8/" style="font-size: 19.618831325500306px;" class="tag-cloud-link">实用</a>
     
-    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 17.957936240451872px;" class="tag-cloud-link">东方Project</a>
+    <a href="/tags/%E4%B8%9C%E6%96%B9Project/" style="font-size: 8.66343022464834px;" class="tag-cloud-link">东方Project</a>
     
-    <a href="/tags/MAD/" style="font-size: 18.456520286433292px;" class="tag-cloud-link">MAD</a>
+    <a href="/tags/MAD/" style="font-size: 17.97246624500152px;" class="tag-cloud-link">MAD</a>
     
-    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 10.736015117567968px;" class="tag-cloud-link">第一次</a>
+    <a href="/tags/%E7%AC%AC%E4%B8%80%E6%AC%A1/" style="font-size: 9.043763828652521px;" class="tag-cloud-link">第一次</a>
     
-    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 9.591209080507072px;" class="tag-cloud-link">思考</a>
+    <a href="/tags/%E6%80%9D%E8%80%83/" style="font-size: 12.183351433466914px;" class="tag-cloud-link">思考</a>
     
 </div>
                 
